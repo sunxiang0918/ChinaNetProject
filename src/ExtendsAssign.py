@@ -1,45 +1,45 @@
-#-*- coding:cp936 -*-
+#-*- coding:UTF-8 -*-
 #import logging,sys
 import xlrd
 import xlwt
 ####################################
 #
-#¸Ã¹¤¾ß¸ù¾İÖØµã»úĞÍ½øĞĞÍØÕ¹ÓÃ
+#è¯¥å·¥å…·æ ¹æ®é‡ç‚¹æœºå‹è¿›è¡Œæ‹“å±•ç”¨
 #
 ####################################
-#ÏµÁĞ»®·Ö
+#ç³»åˆ—åˆ’åˆ†
 ####################
 
-####androidÏµÁĞ
-series1 = ['4702']#4487 À©Õ¹
-series2 = ['4792']#4792 ²»À©Õ¹
-series3 = ['4984']#4984 ²»À©Õ¹
-series4 = ['4806']#4271 À©Õ¹
-series5 = ['5008','16757','16368','16389','5170','16488']#4973 À©Õ¹
-series6 = ['4874','16270']#4436 À©Õ¹
-series7 = ['16829','16288','5018','17168']#4962 À©Õ¹
-series8 = ['5150']#5282 À©Õ¹
-series9 = ['16668']#16788 À©Õ¹
-series10 = ['16669']#16669 ²»À©Õ¹
-series11 = ['5132']#5132 ²»À©Õ¹
+####androidç³»åˆ—
+series1 = ['4702']#4487 æ‰©å±•
+series2 = ['4792']#4792 ä¸æ‰©å±•
+series3 = ['4984']#4984 ä¸æ‰©å±•
+series4 = ['4806']#4271 æ‰©å±•
+series5 = ['5008','16757','16368','16389','5170','16488']#4973 æ‰©å±•
+series6 = ['4874','16270']#4436 æ‰©å±•
+series7 = ['16829','16288','5018','17168']#4962 æ‰©å±•
+series8 = ['5150']#5282 æ‰©å±•
+series9 = ['16668']#16788 æ‰©å±•
+series10 = ['16669']#16669 ä¸æ‰©å±•
+series11 = ['5132']#5132 ä¸æ‰©å±•
 android = {'4487':series1,'4271':series4,'4973':series5,'4436':series6,'4962':series7,'5282':series8,'16788':series9}
-####WMÏµÁĞ
+####WMç³»åˆ—
 ser1 = ['75']#79
 ser2 = ['119']#'5113'
 ser3 = ['4195','4177','284','146','360','4159']#4105
 ser4 = ['111']#4147
-ser5 = ['246']#246  ²»À©Õ¹
-ser6 = ['4470']#4470 ²»À©Õ¹
+ser5 = ['246']#246  ä¸æ‰©å±•
+ser6 = ['4470']#4470 ä¸æ‰©å±•
 ser7 = ['4475','4776','4784']#4752
 ser8 = ['4362']#4780 
-ser9 = ['4183']#4183 ²»À©Õ¹
+ser9 = ['4183']#4183 ä¸æ‰©å±•
 wm = {'79':ser1,'5113':ser2,'4105':ser3,'4147':ser4,'4752':ser7,'4780':ser8}
 
 
-excelname = 'Õæ»úÊÊÅä»úĞÍµ¼Èë.xls'
-excel = xlrd.open_workbook(excelname)#¶ÁÈëÒÑ²âÊÔÍ¨¹ıµÄÊÊÅä¹ØÏµ
+excelname = 'çœŸæœºé€‚é…æœºå‹å¯¼å…¥.xls'
+excel = xlrd.open_workbook(excelname)#è¯»å…¥å·²æµ‹è¯•é€šè¿‡çš„é€‚é…å…³ç³»
 sheet = excel.sheet_by_name('Sheet1')
-ab = {} #×Öµä±£´æexcel£¬keyÎª¸½¼şID
+ab = {} #å­—å…¸ä¿å­˜excelï¼Œkeyä¸ºé™„ä»¶ID
 for r in range(sheet.nrows-1):
 	tmplist = []
 	attchid = sheet.row(r+1)[1].value
@@ -51,15 +51,15 @@ print ab
 file = xlwt.Workbook()
 table = file.add_sheet('Sheet1')
 
-r = 0#Ğ´excelĞĞÊı
+r = 0#å†™excelè¡Œæ•°
 
 for key in ab:
-	tmp = ab[key]#²âÊÔÍ¨¹ıµÄ»úĞÍID
-	bl = False # ±êÊ¶ÊÇ·ñÔÚandroidÕÒµ½ÍØÕ¹»úĞÍ	
-	for x in range(len(tmp)):#Ñ­»·Í¨¹ıµÄ»úĞÍid
-		for a in android:#±éÀúandroidÀ©Õ¹ÏµÁĞ
+	tmp = ab[key]#æµ‹è¯•é€šè¿‡çš„æœºå‹ID
+	bl = False # æ ‡è¯†æ˜¯å¦åœ¨androidæ‰¾åˆ°æ‹“å±•æœºå‹	
+	for x in range(len(tmp)):#å¾ªç¯é€šè¿‡çš„æœºå‹id
+		for a in android:#éå†androidæ‰©å±•ç³»åˆ—
 			if int(tmp[x]) == int(a):
-				bl = True#ÒÑÔÚandroidÏµÁĞÕÒµ½
+				bl = True#å·²åœ¨androidç³»åˆ—æ‰¾åˆ°
 				series = android.get(a)
 				#print series
 				for s in series:
@@ -68,7 +68,7 @@ for key in ab:
 					r = r + 1					
 				break
 		if bl == False:
-			for w in wm:#±éÀúWM
+			for w in wm:#éå†WM
 				if int(tmp[x]) == int(w):
 					series = wm.get(w)
 					for s in series:

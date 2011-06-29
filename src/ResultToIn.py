@@ -1,42 +1,42 @@
-#-*- coding:cp936 -*-
+#-*- coding:UTF-8 -*-
 import logging,sys
 import xlrd
 import xlwt
 
 
 ######################################
-#¸Ã¹¤¾ßÍ¨¹ı»ªÎªµ¼³öÓ¦ÓÃÁĞ±í£¬×Ô¶¯É¸Ñ¡brewÓ¦ÓÃ£¬Éú³ÉÌí¼ÓÕæ»úexcelºÍµãbrew¹¦ÄÜÉóºËÁĞ±í
+#è¯¥å·¥å…·é€šè¿‡åä¸ºå¯¼å‡ºåº”ç”¨åˆ—è¡¨ï¼Œè‡ªåŠ¨ç­›é€‰brewåº”ç”¨ï¼Œç”Ÿæˆæ·»åŠ çœŸæœºexcelå’Œç‚¹brewåŠŸèƒ½å®¡æ ¸åˆ—è¡¨
 ######################################
-logger = logging.getLogger('Mylog')#³õÊ¼»¯µ÷ÊÔÊä³öÈÕÖ¾¶ÔÏó
+logger = logging.getLogger('Mylog')#åˆå§‹åŒ–è°ƒè¯•è¾“å‡ºæ—¥å¿—å¯¹è±¡
 formatter = logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s')
 runtimelog = logging.FileHandler("debug.log")
 runtimelog.setFormatter(formatter)
 logger.addHandler(runtimelog)
 
-# Ğ´ÆÁ¹¦ÄÜ£¬Èç²»ĞèÒª£¬ÔòÇë×¢ÊÍÏÂÃæÈıĞĞ
+# å†™å±åŠŸèƒ½ï¼Œå¦‚ä¸éœ€è¦ï¼Œåˆ™è¯·æ³¨é‡Šä¸‹é¢ä¸‰è¡Œ
 stdoutlog = logging.StreamHandler(sys.stdout)
 stdoutlog.setFormatter(formatter)
 logger.addHandler(stdoutlog)
 logger.setLevel(logging.DEBUG) # DEBUG, INFO, WARNING, ERROR, CRITICAL ...etc
 
-#########################Ğ´EXCEL
-nol1=u'Ó¦ÓÃID'
-nol2=u'¸½¼şID'
-nol3=u'ÊÇ·ñĞ¯´ø¹ã¸æ'
-nol4=u'Õæ»úÊÊÅä£º1;ÊÖ¶¯ÀíÂÛÊÊÅä£º2'
-nol5=u'Õæ»úÊÊÅä»úĞÍ£¨»ªÎªÆ½Ì¨»úĞÍID£©'
-nol55=u'²Ù×÷ÀàĞÍ'
-nol6=u'²âÊÔ½áÂÛ'
-nol7=u'²»Í¨¹ıÊ±Ìø×ªÖÁ£¨¹¦ÄÜÉóºË²»Í¨¹ı£º0,´ı°æÈ¨È·ÈÏ£º1,´ıÄÚÈİÉóºË£º2)'
-nol8=u'±¸×¢£¨²»Í¨¹ıÔ­Òò£©'
-nol9=u'ÆÀ²âµÃ·Ö'
+#########################å†™EXCEL
+nol1=u'åº”ç”¨ID'
+nol2=u'é™„ä»¶ID'
+nol3=u'æ˜¯å¦æºå¸¦å¹¿å‘Š'
+nol4=u'çœŸæœºé€‚é…ï¼š1;æ‰‹åŠ¨ç†è®ºé€‚é…ï¼š2'
+nol5=u'çœŸæœºé€‚é…æœºå‹ï¼ˆåä¸ºå¹³å°æœºå‹IDï¼‰'
+nol55=u'æ“ä½œç±»å‹'
+nol6=u'æµ‹è¯•ç»“è®º'
+nol7=u'ä¸é€šè¿‡æ—¶è·³è½¬è‡³ï¼ˆåŠŸèƒ½å®¡æ ¸ä¸é€šè¿‡ï¼š0,å¾…ç‰ˆæƒç¡®è®¤ï¼š1,å¾…å†…å®¹å®¡æ ¸ï¼š2)'
+nol8=u'å¤‡æ³¨ï¼ˆä¸é€šè¿‡åŸå› ï¼‰'
+nol9=u'è¯„æµ‹å¾—åˆ†'
 
-importname = u'²âÊÔÁĞ±í.xls'
-wrname=u'²âÊÔ½á¹ûµ¼Èë.xls'
-wtname=u'Õæ»úÊÊÅä»úĞÍµ¼Èë.xls'
+importname = u'æµ‹è¯•åˆ—è¡¨.xls'
+wrname=u'æµ‹è¯•ç»“æœå¯¼å…¥.xls'
+wtname=u'çœŸæœºé€‚é…æœºå‹å¯¼å…¥.xls'
 
-ab = {}#keyÎª¸½¼şID£¬valueÊÇÒ»¸ölist
-list = []#´æ·Å¸½¼şIDµÄlist
+ab = {}#keyä¸ºé™„ä»¶IDï¼Œvalueæ˜¯ä¸€ä¸ªlist
+list = []#å­˜æ”¾é™„ä»¶IDçš„list
 
 attid = ''
 appid = ''
@@ -45,10 +45,10 @@ comment=''
 tid=''
 grade=''
 adv=''
-testresult=u'²»Í¨¹ı'
+testresult=u'ä¸é€šè¿‡'
 
 
-excel = xlrd.open_workbook(importname)#´ò¿ªexcel
+excel = xlrd.open_workbook(importname)#æ‰“å¼€excel
 sheet = excel.sheet_by_name('Sheet1')
 
 for r in range(sheet.nrows-1):
@@ -60,9 +60,9 @@ for r in range(sheet.nrows-1):
 	grade = sheet.row(r+1)[3].value
 	adv = sheet.row(r+1)[6].value
 	if len(attid)>7: attid = attid[5:]
-	#list.append(attid)  ÊÇ·ñĞèÒªµ¥¶À±£´ækeyÎªlist
-	tlist = []#ÁÙÊ±list£¬¹¹½¨appid,attid,result,comment,tid,grade,adv
-	maplist = []#ÁÙÊ±list£¬¹¹½¨¶à¸ö¡¾appid,attid,result,comment,tid,grade,adv¡¿
+	#list.append(attid)  æ˜¯å¦éœ€è¦å•ç‹¬ä¿å­˜keyä¸ºlist
+	tlist = []#ä¸´æ—¶listï¼Œæ„å»ºappid,attid,result,comment,tid,grade,adv
+	maplist = []#ä¸´æ—¶listï¼Œæ„å»ºå¤šä¸ªã€appid,attid,result,comment,tid,grade,advã€‘
 	tmplist = []
 	tlist.append(appid)
 	tlist.append(attid)
@@ -85,7 +85,7 @@ for r in range(sheet.nrows-1):
 #print ab.get(list[0])[1].encode('cp936')
 #logger.debug(ab)
 
-file = xlwt.Workbook()#Õæ»úÊÊÅä»úĞÍµ¼Èë
+file = xlwt.Workbook()#çœŸæœºé€‚é…æœºå‹å¯¼å…¥
 table = file.add_sheet('Sheet1')
 table.write(0,0,nol1)
 table.write(0,1,nol2)
@@ -94,7 +94,7 @@ table.write(0,3,nol4)
 table.write(0,4,nol5)
 table.write(0,5,nol55)
 
-file1 = xlwt.Workbook()#²âÊÔ½á¹ûµ¼Èë
+file1 = xlwt.Workbook()#æµ‹è¯•ç»“æœå¯¼å…¥
 table1 = file1.add_sheet('Sheet1')
 table1.write(0,0,nol1)
 table1.write(0,1,nol2)
@@ -107,16 +107,16 @@ row = 1
 row1 = 1
 
 for key in ab:
-	testresult = u'²»Í¨¹ı'
+	testresult = u'ä¸é€šè¿‡'
 	rdirect = '0'
 	avg = 0
 	tmp = ab[key]
-	x = 1 #Ò»¸ö¸½¼şÍ¨¹ıµÄÈÎÎñÊı
+	x = 1 #ä¸€ä¸ªé™„ä»¶é€šè¿‡çš„ä»»åŠ¡æ•°
 	for t in range(len(tmp)):
-		if tmp[t][2]==u'¹¦ÄÜ²âÊÔÍ¨¹ı':			
-			testresult = u'Í¨¹ı'
+		if tmp[t][2]==u'åŠŸèƒ½æµ‹è¯•é€šè¿‡':			
+			testresult = u'é€šè¿‡'
 			rdirect = ''
-			#logger.debug(u'Í¨¹ı')
+			#logger.debug(u'é€šè¿‡')
 			table.write(row,0,tmp[t][0])
 			table.write(row,1,key)
 			table.write(row,2,tmp[t][6])
@@ -140,10 +140,10 @@ for key in ab:
 	table1.write(row1,1,key)
 	table1.write(row1,2,testresult)
 	table1.write(row1,3,rdirect)
-	if testresult == u'²»Í¨¹ı':
+	if testresult == u'ä¸é€šè¿‡':
 		table1.write(row1,4,tmp[0][3])
 	#table1.write(row1,4,'')		
-	table1.write(row1,5,avg/x)#ÇóÆ½¾ù·Ö
+	table1.write(row1,5,avg/x)#æ±‚å¹³å‡åˆ†
 	row1 = row1 + 1
 
 		
